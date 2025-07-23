@@ -1,0 +1,27 @@
+services:
+  mariadb-server:
+    container_name: mariadb-server
+    image: mariadb:latest
+    hostname: mariadb-server
+    environment:
+      MARIADB_ROOT_PASSWORD: RootPassword123!
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mariadb-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+
+  code-server:
+    container_name: code-server
+    image: linuxserver/code-server:latest
+    hostname: code-server
+    ports:
+      - "3333:8443"
+    environment:
+      - DEFAULT_WORKSPACE=/home/workspace
+    volumes:
+      - ./workspace:/home/workspace
+      - ./install-tools.sh:/etc/cont-init.d/99-install-tools.sh
+      - ./settings.json:/config/data/User/settings.json
+    restart: unless-stopped
