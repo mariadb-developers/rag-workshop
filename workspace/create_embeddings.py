@@ -1,10 +1,11 @@
 import os
 import mariadb
+from sqlalchemy.engine.url import make_url
 from langchain_core.documents import Document
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_mariadb import MariaDBStore
 
-emb = GoogleGenerativeAIEmbeddings(
+embedder = GoogleGenerativeAIEmbeddings(
     model="models/embedding-001",
     google_api_key=os.environ["GEMINI_API_KEY"]
 )
@@ -12,17 +13,19 @@ emb = GoogleGenerativeAIEmbeddings(
 DSN = "mariadb+mariadbconnector://root:RootPassword123!@mariadb-server:3306/rag_demo"
 
 store = MariaDBStore(
-    embeddings=emb,
+    embeddings=embedder,
     embedding_length=768,
     datasource=DSN,
     collection_name="products_desc_gemini001"
 )
 
+url = make_url(DSN)
 conn = mariadb.connect(
-    host="mariadb-server",
-    user="root",
-    password="RootPassword123!",
-    database="rag_demo"
+    user=url.username,
+    password=url.password,
+    host=url.host,
+    port=url.port,
+    database=url.database,
 )
 cur = conn.cursor()
 cur.execute("SELECT id, description FROM products")

@@ -10,7 +10,7 @@ ln -s /usr/bin/python3 /usr/bin/python || true
 cd /home/workspace/
 python -m venv .venv
 source .venv/bin/activate
-pip install mariadb langchain-community langchain-google-genai langchain-mariadb
+pip install mariadb SQLAlchemy langchain-community langchain-google-genai langchain-mariadb
 
 # Install VS Code extensions
 install-extension cweijan.vscode-database-client2
