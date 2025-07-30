@@ -1,4 +1,5 @@
 {
     "keyboard.dispatch": "keyCode",
-    "window.autoDetectColorScheme": true
+    "window.autoDetectColorScheme": true,
+    "database-client.autoSync": true
 }

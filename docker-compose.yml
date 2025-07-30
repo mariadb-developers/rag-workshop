@@ -10,6 +10,7 @@ services:
     volumes:
       - ./mariadb-data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./products.csv:/products.csv
     restart: unless-stopped
 
   code-server:

@@ -19,5 +19,4 @@ vectorStore = MariaDBStore(
 results = vectorStore.similarity_search("Gear for cold, wet mountain backpacking", k=10)
 
 for i, (doc) in enumerate(results, 1):
-    snippet = textwrap.shorten(doc.page_content, width=250, placeholder="…")
-    print(f"{i}. {snippet}\n")
+    print(f"{i}. {doc.metadata['name']} - {doc.page_content}")

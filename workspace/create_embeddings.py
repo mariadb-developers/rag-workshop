@@ -28,11 +28,11 @@ conn = mariadb.connect(
     database=url.database,
 )
 cur = conn.cursor()
-cur.execute("SELECT id, description FROM products")
+cur.execute("SELECT id, name, description FROM products")
 
-for pid, desc in cur:
-    doc = Document(page_content=desc, metadata={"product_id": pid})
+for id, name, desc in cur:
+    doc = Document(page_content=desc, metadata={"id": id, "name" : name})
     store.add_documents([doc])
-    print(f"[ingested] product_id={pid}", flush=True)
+    print(f"[ingested] id={id}", flush=True)
 
 conn.close()
