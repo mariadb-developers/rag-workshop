@@ -13,13 +13,6 @@ CREATE TABLE IF NOT EXISTS products (
 	FULLTEXT(description)
 );
 
--- This table holds the embeddings separately
-CREATE TABLE IF NOT EXISTS product_embeddings (
-	product_id INT PRIMARY KEY,
-	embedding VECTOR(768) NOT NULL,
-	FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
-);
-
 -- Load the products data from the CSV file
 LOAD DATA INFILE '/products.csv'
 IGNORE
