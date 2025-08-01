@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS rag_demo;
+CREATE DATABASE IF NOT EXISTS demo;
 
-USE rag_demo;
+USE demo;
 
 -- Create the products table
 CREATE TABLE IF NOT EXISTS products (

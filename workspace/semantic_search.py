@@ -12,11 +12,11 @@ embedder = GoogleGenerativeAIEmbeddings(
 vectorStore = MariaDBStore(
     embeddings=embedder,
     embedding_length=768,
-    datasource="mariadb+mariadbconnector://root:RootPassword123!@mariadb-server:3306/rag_demo",
+    datasource="mariadb+mariadbconnector://root:RootPassword123!@mariadb-server:3306/demo",
     collection_name="products_desc_gemini001"
 )
 
-results = vectorStore.similarity_search("Gear for cold, wet mountain backpacking", k=10)
+results = vectorStore.similarity_search("", k=10) # TODO: replace with a real query
 
 for i, (doc) in enumerate(results, 1):
     print(f"{i}. {doc.metadata['name']} - {doc.page_content}")

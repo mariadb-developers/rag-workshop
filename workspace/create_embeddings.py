@@ -10,7 +10,7 @@ embedder = GoogleGenerativeAIEmbeddings(
     google_api_key=os.environ["GEMINI_API_KEY"]
 )
 
-DSN = "mariadb+mariadbconnector://root:RootPassword123!@mariadb-server:3306/rag_demo"
+DSN = "mariadb+mariadbconnector://root:RootPassword123!@mariadb-server:3306/demo"
 
 store = MariaDBStore(
     embeddings=embedder,
