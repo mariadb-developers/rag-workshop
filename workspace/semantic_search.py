@@ -16,7 +16,7 @@ vectorStore = MariaDBStore(
     collection_name="products_desc_gemini001"
 )
 
-results = vectorStore.similarity_search("", k=10) # TODO: replace with a real query
+results = vectorStore.similarity_search("YOUR QUERY HERE", k=10) # TODO: replace with a real query
 
 for i, (doc) in enumerate(results, 1):
     print(f"{i}. {doc.metadata['name']} - {doc.page_content}")
