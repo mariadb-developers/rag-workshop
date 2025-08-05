@@ -1,4 +1,4 @@
-import os, mariadb, textwrap
+import os
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_mariadb import MariaDBStore
 
