@@ -26,16 +26,16 @@ store = MariaDBStore(
 )
 
 # Connect to MariaDB
-conn = mariadb.connect(user=USER, password=PASSWORD, host=HOST, port=PORT, database=DATABASE)
+connection = mariadb.connect(user=USER, password=PASSWORD, host=HOST, port=PORT, database=DATABASE)
 
 # Get all products
-cur = conn.cursor()
-cur.execute("SELECT id, name, description FROM products")
+cursor = connection.cursor()
+cursor.execute("SELECT id, name, description FROM products")
 
 # Ingest product descriptions into the embeddings store
-for id, name, desc in cur:
+for id, name, desc in cursor:
     doc = Document(page_content=desc, metadata={"id": id, "name" : name})
     store.add_documents([doc])
     print(f"[ingested] id={id}", flush=True)
 
-conn.close()
+connection.close()
