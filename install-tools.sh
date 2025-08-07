@@ -17,4 +17,4 @@ install-extension cweijan.vscode-database-client2
 install-extension ms-python.python
 
 echo -e "\e[32mPython and VS Code extensions installed successfully.\e[0m"
-echo -e "\e[32mPoint your browser to \e[34mhttp://localhost:3333\e[32m.\e[0m"
+echo -e "\e[32mPoint your browser to \e[34mhttp://localhost:4444\e[32m.\e[0m"
