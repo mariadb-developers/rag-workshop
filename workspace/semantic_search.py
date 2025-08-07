@@ -12,9 +12,9 @@ embedder = GoogleGenerativeAIEmbeddings(
 
 # Create a vector store for embeddings
 vectorStore = MariaDBStore(
+    datasource="mariadb+mariadbconnector://root:RootPassword123!@mariadb-server:3306/demo",
     embeddings=embedder,
     embedding_length=768,
-    datasource="mariadb+mariadbconnector://root:RootPassword123!@mariadb-server:3306/demo",
     collection_name="products_desc_gemini001"
 )
 

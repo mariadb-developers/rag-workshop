@@ -1,6 +1,5 @@
 import os
 import mariadb
-from sqlalchemy.engine.url import make_url
 from langchain_core.documents import Document
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_mariadb import MariaDBStore
@@ -11,26 +10,23 @@ embedder = GoogleGenerativeAIEmbeddings(
     google_api_key=os.environ["GEMINI_API_KEY"] # Ensure you set this environment variable
 )
 
-# MariaDB Data Source Name (host: mariadb-server, port: 3306, database: demo, user: root, password: RootPassword123!)
-DSN = "mariadb+mariadbconnector://root:RootPassword123!@mariadb-server:3306/demo"
+# MariaDB connection details
+USER="root"
+PASSWORD="RootPassword123!"
+HOST="mariadb-server"
+PORT=3306
+DATABASE="demo"
 
 # Create a MariaDB store for embeddings (LangChain integration)
 store = MariaDBStore(
+    datasource=f"mariadb+mariadbconnector://{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}",
     embeddings=embedder,
     embedding_length=768,
-    datasource=DSN,
     collection_name="products_desc_gemini001"
 )
 
 # Connect to MariaDB
-url = make_url(DSN)
-conn = mariadb.connect(
-    user=url.username,
-    password=url.password,
-    host=url.host,
-    port=url.port,
-    database=url.database,
-)
+conn = mariadb.connect(user=USER, password=PASSWORD, host=HOST, port=PORT, database=DATABASE)
 
 # Get all products
 cur = conn.cursor()
