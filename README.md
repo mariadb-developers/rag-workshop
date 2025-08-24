@@ -23,7 +23,7 @@ docker compose up -d
 docker logs code-server -f
 ```
 
-**➡️ Step 5** - Go to http://localhost:3333/ and create a MariaDB connection (click on _Database icon_ -> **Create Connection** -> **MariaDB**):
+**➡️ Step 5** - Go to http://localhost:4444/ and create a MariaDB connection (click on _Database icon_ -> **Create Connection** -> **MariaDB**):
 
 * Host: `mariadb-server`
 
